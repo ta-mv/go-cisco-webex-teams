@@ -77,8 +77,8 @@ func NewClient(client *resty.Client) *Client {
 	return c
 }
 
-func NewClientWithProxy(proxyURL string) *Client {
-	c := NewClient()
+func NewClientWithProxy(client *resty.Client, proxyURL string) *Client {
+	c := NewClient(client)
 	c.common.client.SetProxy(proxyURL)
 	return c
 }
