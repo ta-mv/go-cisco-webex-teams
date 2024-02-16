@@ -45,8 +45,10 @@ func (s *Client) SetAuthToken(accessToken string) {
 
 // NewClient creates a new API client. Requires a userAgent string describing your application.
 // optionally a custom http.Client to allow for advanced features such as caching.
-func NewClient() *Client {
-	client := resty.New()
+func NewClient(client *resty.Client) *Client {
+	if client == nil {
+		client = resty.New()
+	}
 	c := &Client{}
 	c.common.client = client
 	c.common.client.SetHostURL(apiURL)
